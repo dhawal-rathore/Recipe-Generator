@@ -9,9 +9,19 @@ public class Recipe {
         //stub
     }
 
+    public Recipe(String name, List<Ingredient> ingredientList, List<String> recipeInstructions) {
+        //stub
+    }
+
     //MODIFIES: this
-    //EFFECTS: adds Ingredient to listOfIngredients
+    //EFFECTS: adds Ingredient to ingredientList
     public void addIngredient(Ingredient ingredient){
+        //stub
+    }
+
+    //MODIFIES: this
+    //EFFECTS: adds recipe step to recipeInstructions
+    public void addRecipeStep(String recipeStep){
         //stub
     }
 
@@ -28,5 +38,17 @@ public class Recipe {
     //EFFECTS: checks if Ingredient is in Recipe
     private Boolean isIngredientInRecipe(Ingredient ingredient) {
         return false;
+    }
+
+    public String getName() {
+        return null;
+    }
+
+    public List<Ingredient> getIngredientList() {
+        return null;
+    }
+
+    public List<String> getRecipeInstructions() {
+        return null;
     }
 }
