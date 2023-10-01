@@ -38,15 +38,13 @@ class IngredientTest {
     @Test
     void testUseIngredient() {
         ingredient1.useIngredient(2.0);
-        //Double double1 = new Double(8.0);
         assertEquals(8.0,ingredient1.getQuantity());
     }
 
     @Test
     void testAddIngredient() {
-        ingredient1.useIngredient(2.0);
-        //Double double1 = new Double(0.8);
-        assertEquals(10.0,ingredient1.getQuantity());
+        ingredient1.addIngredient(2.0);
+        assertEquals(12.0,ingredient1.getQuantity());
     }
 
 }
