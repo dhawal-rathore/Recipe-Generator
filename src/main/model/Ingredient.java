@@ -17,7 +17,7 @@ public class Ingredient {
     }
 
     //EFFECTS: returns True if Ingredients have the same name
-    public Boolean areNamesEqual(Ingredient that) {
+    public Boolean equals(Ingredient that) {
         return this.name.equals(that.name);
     }
 
