@@ -161,6 +161,7 @@ class RecipeTest {
         Ingredient ingredient1 = new Ingredient("ingredient1",10.0);
         Ingredient ingredient2 = new Ingredient("ingredient2",5.5);
         recipe1.addIngredient(ingredient1);
+        recipe1.addIngredient(ingredient2);
         recipe1.addRecipeStep("Step 1");
         recipe1.addRecipeStep("Step 2");
 
