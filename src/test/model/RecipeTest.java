@@ -23,7 +23,7 @@ class RecipeTest {
         availableIngredients = new ArrayList<>();
 
         recipe1 = new Recipe("recipe1");
-        recipe2 = new Recipe("recipe2", ingredientList,instructions);
+        recipe2 = new Recipe("recipe2", new ArrayList<Ingredient>(),new ArrayList<String>());
     }
 
     @Test
