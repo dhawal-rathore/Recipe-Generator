@@ -1,6 +1,6 @@
 package model;
 
-// Represents an Ingredient with name and quantity with optional description
+// Represents an Ingredient with name and quantity
 public class Ingredient {
     private String name;
     private Double quantity;
