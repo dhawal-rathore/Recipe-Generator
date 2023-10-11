@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RecipeTest {
     Recipe recipe1;
     Recipe recipe2;
+    Recipe recipe3;
     ArrayList<Ingredient> ingredientList;
     ArrayList<String> instructions;
     List<Ingredient> availableIngredients;
@@ -24,6 +25,8 @@ class RecipeTest {
 
         recipe1 = new Recipe("recipe1");
         recipe2 = new Recipe("recipe2", new ArrayList<Ingredient>(),new ArrayList<String>());
+        recipe3 = new Recipe("recipe1");
+
     }
 
     @Test
@@ -178,5 +181,66 @@ class RecipeTest {
                 "2. Step 2");
 
         assertEquals(recipeString,recipe1.recipePrintable());
+    }
+
+    @Test
+    void testEqualIngredientsWhenEqual() {
+        Ingredient recipeIngredient1 = new Ingredient("ingredient1",5.0);
+        Ingredient recipeIngredient2 = new Ingredient("ingredient2",10.0);
+        Ingredient recipeIngredient3 = new Ingredient("ingredient3",10.0);
+        recipe1.addIngredient(recipeIngredient1);
+        recipe1.addIngredient(recipeIngredient2);
+        recipe1.addIngredient(recipeIngredient3);
+        recipe3.addIngredient(recipeIngredient1);
+        recipe3.addIngredient(recipeIngredient2);
+        recipe3.addIngredient(recipeIngredient3);
+
+        assertTrue(recipe1.equalIngredientsAndName(recipe3));
+    }
+
+    @Test
+    void testEqualIngredientsWhenEqualDifferentName() {
+        Ingredient recipeIngredient1 = new Ingredient("ingredient1",5.0);
+        Ingredient recipeIngredient2 = new Ingredient("ingredient2",10.0);
+        Ingredient recipeIngredient3 = new Ingredient("ingredient3",10.0);
+        recipe1.addIngredient(recipeIngredient1);
+        recipe1.addIngredient(recipeIngredient2);
+        recipe1.addIngredient(recipeIngredient3);
+        recipe2.addIngredient(recipeIngredient1);
+        recipe2.addIngredient(recipeIngredient2);
+        recipe2.addIngredient(recipeIngredient3);
+
+        assertFalse(recipe1.equalIngredientsAndName(recipe2));
+    }
+
+
+    @Test
+    void testEqualIngredientsWhenEqualSizeDifferentIngredient() {
+        Ingredient recipeIngredient1 = new Ingredient("ingredient1",5.0);
+        Ingredient recipeIngredient2 = new Ingredient("ingredient2",10.0);
+        Ingredient recipeIngredient3 = new Ingredient("ingredient3",10.0);
+        recipe1.addIngredient(recipeIngredient1);
+        recipe1.addIngredient(recipeIngredient2);
+        recipe3.addIngredient(recipeIngredient1);
+        recipe3.addIngredient(recipeIngredient3);
+
+        assertFalse(recipe1.equalIngredientsAndName(recipe3));
+    }
+
+    @Test
+    void testEqualIngredientsWhenDifferentSizeDifferentIngredient() {
+        Ingredient recipeIngredient1 = new Ingredient("ingredient1",5.0);
+        Ingredient recipeIngredient2 = new Ingredient("ingredient2",10.0);
+        Ingredient recipeIngredient3 = new Ingredient("ingredient3",10.0);
+        recipe1.addIngredient(recipeIngredient1);
+        recipe3.addIngredient(recipeIngredient1);
+        recipe3.addIngredient(recipeIngredient3);
+
+        assertFalse(recipe1.equalIngredientsAndName(recipe3));
+    }
+
+    @Test
+    void testGetName() {
+        assertEquals("recipe1",recipe1.getName());
     }
 }
