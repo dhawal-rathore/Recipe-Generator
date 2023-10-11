@@ -47,4 +47,8 @@ class IngredientTest {
         assertEquals(12.0,ingredient1.getQuantity());
     }
 
+    @Test
+    void testPrintable() {
+        assertEquals("10.00 Ingredient1",ingredient1.printable());
+    }
 }
