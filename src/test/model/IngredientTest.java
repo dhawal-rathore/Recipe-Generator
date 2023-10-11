@@ -31,8 +31,8 @@ class IngredientTest {
 
     @Test
     void testAreNamesEqual() {
-        assertFalse(ingredient1.equals(ingredient2));
-        assertTrue(ingredient1.equals(ingredient4));
+        assertFalse(ingredient1.equalNames(ingredient2));
+        assertTrue(ingredient1.equalNames(ingredient4));
     }
 
     @Test
