@@ -17,8 +17,15 @@ public class RecipeGenerator {
     //MODIFIES: this
     //EFFECTS: adds Ingredient to available ingredients with quantity 0 if it isn't already in ingredients.
     public void createIngredient(String name) {
-        Ingredient ingredient = new Ingredient(name,0.0);
-        if (!availableIngredients.contains(ingredient)) {
+        boolean alreadyPresent = false;
+        for (Ingredient availableIngredient : availableIngredients) {
+            if (availableIngredient.getName().equals(name)) {
+                alreadyPresent = true;
+                break;
+            }
+        }
+        if (!alreadyPresent) {
+            Ingredient ingredient = new Ingredient(name,0.0);
             availableIngredients.add(ingredient);
         }
     }
@@ -29,7 +36,7 @@ public class RecipeGenerator {
     //         else returns false
     public Boolean addQuantityToIngredient(String name, double quantity) {
         for (Ingredient ingredient : availableIngredients) {
-            if (ingredient.getName() == name) {
+            if (ingredient.getName().equalsIgnoreCase(name)) {
                 ingredient.addIngredient(quantity);
                 return true;
             }
