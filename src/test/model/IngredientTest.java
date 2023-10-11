@@ -10,6 +10,7 @@ class IngredientTest {
     Ingredient ingredient2;
     Ingredient ingredient3;
     Ingredient ingredient4;
+    Ingredient ingredient5;
 
 
     @BeforeEach
@@ -18,6 +19,7 @@ class IngredientTest {
         ingredient2 = new Ingredient("Ingredient2", 2.0);
         ingredient3 = new Ingredient("Ingredient3",10.0);
         ingredient4 = new Ingredient("Ingredient1",20.0);
+        ingredient5 = new Ingredient("Ingredient1",10.0);
 
     }
 
@@ -50,5 +52,13 @@ class IngredientTest {
     @Test
     void testPrintable() {
         assertEquals("10.00 Ingredient1",ingredient1.printable());
+    }
+
+    @Test
+    void testEquals() {
+        assertTrue(ingredient1.equals(ingredient5));
+        assertFalse(ingredient1.equals(ingredient4));
+        assertFalse(ingredient1.equals(ingredient2));
+        assertFalse(ingredient1.equals(ingredient3));
     }
 }
