@@ -213,6 +213,11 @@ class RecipeTest {
         assertFalse(recipe1.equalIngredientsAndName(recipe2));
     }
 
+    @Test
+    void testEqualIngredientsWhenEqualNoIngredients() {
+        assertFalse(recipe1.equalIngredientsAndName(recipe3));
+    }
+
 
     @Test
     void testEqualIngredientsWhenEqualSizeDifferentIngredient() {
