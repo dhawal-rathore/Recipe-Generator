@@ -40,6 +40,11 @@ public class Ingredient {
         return this.name.equals(that.name);
     }
 
+    //EFFECTS: returns String with name and quantity of ingredient
+    public String printable() {
+        return String.format("%.2f %s",quantity,name);
+    }
+
     public String getName() {
         return name;
     }
