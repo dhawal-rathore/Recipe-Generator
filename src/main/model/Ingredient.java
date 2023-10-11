@@ -18,7 +18,7 @@ public class Ingredient {
 
     //EFFECTS: returns True if Ingredients have the same name
     public Boolean equals(Ingredient that) {
-        return this.name.equals(that.name);
+        return this.name.equals(that.name) && this.quantity.equals(that.quantity);
     }
 
     //REQUIRES: 0 < useQuantity < this.quantity;
@@ -33,6 +33,11 @@ public class Ingredient {
     //EFFECTS: increases quantity by addQuantity
     public void addIngredient(double addQuantity) {
         quantity += addQuantity;
+    }
+
+    //EFFECTS: returns True if Ingredients have the same name
+    public Boolean equalNames(Ingredient that) {
+        return this.name.equals(that.name);
     }
 
     public String getName() {
