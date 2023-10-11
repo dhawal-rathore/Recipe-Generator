@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 //represents a Recipe as a collection of Ingredients with
 public class Recipe {
@@ -80,7 +79,8 @@ public class Recipe {
         return recipeString;
     }
 
-    public Boolean equals(Recipe that) {
+    //EFFECTS: returns true if both recipes have same ingredient lists
+    public Boolean equalIngredientsAndName(Recipe that) {
         Boolean b = true;
         if (this.ingredientList.size() == that.ingredientList.size() && this.ingredientList.size() > 0) {
             for (int i = 0; i < ingredientList.size(); i++) {
