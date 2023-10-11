@@ -2,10 +2,15 @@ package model;
 
 import java.util.List;
 
+//represents the overlying class that the UI interacts with
 public class RecipeGenerator {
 
+    public RecipeGenerator() {
+        //stub
+    }
+
     //MODIFIES: this
-    //EFFECTS: adds Ingredient to available ingredients with quantity 0
+    //EFFECTS: adds Ingredient to available ingredients with quantity 0 if it isn't already in ingredients.
     public void createIngredient(String name) {
         //stub
     }
@@ -20,7 +25,7 @@ public class RecipeGenerator {
 
     //MODIFIES: this
     //EFFECTS: creates recipe and adds to recipeList
-    public void addRecipe(String recipeName, List<Ingredient> ingredientList, List<String> recipeInstructions) {
+    public void addRecipe(Recipe recipe) {
         //void
     }
 
@@ -29,4 +34,11 @@ public class RecipeGenerator {
         return null;
     }
 
+    public List<Ingredient> getAvailableIngredients() {
+        return null;
+    }
+
+    public List<Recipe> getRecipeList() {
+        return null;
+    }
 }
