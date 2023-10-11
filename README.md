@@ -14,7 +14,8 @@ easier for the user to plan their next meal.
 
 ## User Stories
 
-- As a user, I want to be able to add an ingredient with it's quantity to my list of ingredients.
+- As a user, I want to be able to add an ingredient with its quantity to my list of ingredients.
 - As a user, I want to be able to create a Recipe with name, preparation steps, and Ingredients from ListOfIngredients.
 - As a user, I want to be able to view my Recipe. 
 - As a user, I want to check if I have all the ingredients a Recipe needs. 
+1
