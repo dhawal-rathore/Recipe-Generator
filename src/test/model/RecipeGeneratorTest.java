@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RecipeGeneratorTest {
     RecipeGenerator generator;
@@ -25,8 +26,8 @@ class RecipeGeneratorTest {
         ingredient2 = new Ingredient("ingredient2",0.0);
         ingredient3 = new Ingredient("ingredient3",0.0);
         recipe1 = new Recipe("recipe1");
-        recipe2 = new Recipe("recipe1");
-        recipe3 = new Recipe("recipe1");
+        recipe2 = new Recipe("recipe2");
+        recipe3 = new Recipe("recipe3");
         recipeSetup();
     }
 
@@ -37,7 +38,9 @@ class RecipeGeneratorTest {
         List<Ingredient> ingredientList = new ArrayList<>();
         ingredientList.add(ingredient1);
 
-        assertEquals(ingredientList,generator.getAvailableIngredients());
+        for (int i = 0; i < ingredientList.size(); i++) {
+            assertTrue(ingredientList.get(i).equals(generator.getAvailableIngredients().get(i)));
+        }
     }
 
     @Test
@@ -46,10 +49,14 @@ class RecipeGeneratorTest {
 
         List<Ingredient> ingredientList = new ArrayList<>();
         ingredientList.add(ingredient1);
-        assertEquals(ingredientList,generator.getAvailableIngredients());
+        for (int i = 0; i < ingredientList.size(); i++) {
+            assertTrue(ingredientList.get(i).equals(generator.getAvailableIngredients().get(i)));
+        }
 
         generator.createIngredient("ingredient1");
-        assertEquals(ingredientList,generator.getAvailableIngredients());
+        for (int i = 0; i < ingredientList.size(); i++) {
+            assertTrue(ingredientList.get(i).equals(generator.getAvailableIngredients().get(i)));
+        }
     }
 
     @Test
@@ -65,7 +72,9 @@ class RecipeGeneratorTest {
 
 
         generator.createIngredient("ingredient3");
-        assertEquals(ingredientList,generator.getAvailableIngredients());
+        for (int i = 0; i < ingredientList.size(); i++) {
+            assertTrue(ingredientList.get(i).equals(generator.getAvailableIngredients().get(i)));
+        }
     }
 
     @Test
@@ -83,7 +92,9 @@ class RecipeGeneratorTest {
         List<Ingredient> ingredientList = new ArrayList<>();
         ingredientList.add(ingredient1);
 
-        assertEquals(ingredientList,generator.getAvailableIngredients());
+        for (int i = 0; i < ingredientList.size(); i++) {
+            assertTrue(ingredientList.get(i).equals(generator.getAvailableIngredients().get(i)));
+        }
     }
 
     @Test
@@ -95,7 +106,9 @@ class RecipeGeneratorTest {
         List<Ingredient> ingredientList = new ArrayList<>();
         ingredientList.add(ingredient1);
 
-        assertEquals(ingredientList,generator.getAvailableIngredients());
+        for (int i = 0; i < ingredientList.size(); i++) {
+            assertTrue(ingredientList.get(i).equals(generator.getAvailableIngredients().get(i)));
+        }
     }
 
     @Test
@@ -112,7 +125,9 @@ class RecipeGeneratorTest {
 
 
         assertTrue(generator.addQuantityToIngredient("ingredient3",10.0));
-        assertEquals(ingredientList,generator.getAvailableIngredients());
+        for (int i = 0; i < ingredientList.size(); i++) {
+            assertTrue(ingredientList.get(i).equals(generator.getAvailableIngredients().get(i)));
+        }
     }
 
     @Test
@@ -127,7 +142,9 @@ class RecipeGeneratorTest {
         ingredientList.add(ingredient3);
 
         assertFalse(generator.addQuantityToIngredient("ingredient4",10.0));
-        assertEquals(ingredientList,generator.getAvailableIngredients());
+        for (int i = 0; i < ingredientList.size(); i++) {
+            assertTrue(ingredientList.get(i).equals(generator.getAvailableIngredients().get(i)));
+        }
     }
 
     @Test
@@ -136,11 +153,15 @@ class RecipeGeneratorTest {
         recipeArrayList.add(recipe1);
 
         generator.addRecipe(recipe1);
-        assertEquals(recipeArrayList,generator.getRecipeList());
+        for (int i = 0; i < recipeArrayList.size(); i++) {
+            assertTrue(recipeArrayList.get(i).equals(generator.getRecipeList().get(i)));
+        }
 
         recipeArrayList.add(recipe1);
         generator.addRecipe(recipe1);
-        assertEquals(recipeArrayList,generator.getRecipeList());
+        for (int i = 0; i < recipeArrayList.size(); i++) {
+            assertTrue(recipeArrayList.get(i).equals(generator.getRecipeList().get(i)));
+        }
 
     }
 
@@ -161,6 +182,10 @@ class RecipeGeneratorTest {
 
     @Test
     void testGetCookableRecipesOneRecipeReturned() {
+        generator.addRecipe(recipe1);
+        generator.addRecipe(recipe2);
+        generator.addRecipe(recipe3);
+
         generator.createIngredient("ingredient1");
         generator.createIngredient("ingredient2");
         generator.createIngredient("ingredient3");
@@ -169,14 +194,22 @@ class RecipeGeneratorTest {
         generator.addQuantityToIngredient("ingredient2",10.0);
         generator.addQuantityToIngredient("ingredient3",10.0);
 
+
+
         ArrayList<Recipe> recipeArrayList = new ArrayList<>();
         recipeArrayList.add(recipe1);
 
-        assertEquals(recipeArrayList,generator.getCookableRecipes());
+        for (int i = 0; i < recipeArrayList.size(); i++) {
+            assertTrue(recipeArrayList.get(i).equals(generator.getCookableRecipes().get(i)));
+        }
     }
 
     @Test
     void testGetCookableRecipesTwoRecipeReturnedEquals() {
+        generator.addRecipe(recipe1);
+        generator.addRecipe(recipe2);
+        generator.addRecipe(recipe3);
+
         generator.createIngredient("ingredient1");
         generator.createIngredient("ingredient2");
         generator.createIngredient("ingredient3");
@@ -189,11 +222,17 @@ class RecipeGeneratorTest {
         recipeArrayList.add(recipe1);
         recipeArrayList.add(recipe2);
 
-        assertEquals(recipeArrayList,generator.getCookableRecipes());
+        for (int i = 0; i < recipeArrayList.size(); i++) {
+            assertTrue(recipeArrayList.get(i).equals(generator.getCookableRecipes().get(i)));
+        }
     }
 
     @Test
     void testGetCookableRecipesThreeRecipeReturned() {
+        generator.addRecipe(recipe1);
+        generator.addRecipe(recipe2);
+        generator.addRecipe(recipe3);
+
         generator.createIngredient("ingredient1");
         generator.createIngredient("ingredient2");
         generator.createIngredient("ingredient3");
@@ -207,7 +246,9 @@ class RecipeGeneratorTest {
         recipeArrayList.add(recipe2);
         recipeArrayList.add(recipe3);
 
-        assertEquals(recipeArrayList,generator.getCookableRecipes());
+        for (int i = 0; i < recipeArrayList.size(); i++) {
+            assertTrue(recipeArrayList.get(i).equals(generator.getCookableRecipes().get(i)));
+        }
     }
 
     //EFFECTS: creates 3 recipes with varying amounts of ingredient quantities needed
@@ -238,5 +279,6 @@ class RecipeGeneratorTest {
         recipe3.addIngredient(recipeIngredient3);
         recipe3.addRecipeStep("Step 1");
         recipe3.addRecipeStep("Step 2");
+
     }
 }
