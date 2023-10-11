@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 //represents a Recipe as a collection of Ingredients with
 public class Recipe {
@@ -40,7 +41,6 @@ public class Recipe {
         Boolean b = true;
         for (Ingredient recipeIngredient : ingredientList) {
             int ingredientIndex = getIndexOfIngredient(recipeIngredient,availableIngredients);
-            System.out.println(ingredientIndex);
             if (ingredientIndex != -1) {
                 if (availableIngredients.get(ingredientIndex).hasQuantityMoreThan(recipeIngredient)) {
                     continue;
@@ -58,7 +58,7 @@ public class Recipe {
 
     private int getIndexOfIngredient(Ingredient recipeIngredient, List<Ingredient> availableIngredients) {
         for (int i = 0; i < availableIngredients.size(); i++) {
-            if (availableIngredients.get(i).equals(recipeIngredient)) {
+            if (availableIngredients.get(i).equalNames(recipeIngredient)) {
                 return i;
             }
         }
@@ -78,6 +78,24 @@ public class Recipe {
             recipeString += String.format("\n%d. %s", i + 1,recipeInstructions.get(i));
         }
         return recipeString;
+    }
+
+    public Boolean equals(Recipe that) {
+        Boolean b = true;
+        if (this.ingredientList.size() == that.ingredientList.size() && this.ingredientList.size() > 0) {
+            for (int i = 0; i < ingredientList.size(); i++) {
+                if (this.ingredientList.get(i).equals(that.ingredientList.get(i))) {
+                    continue;
+                } else {
+                    b = false;
+                    break;
+                }
+            }
+        } else {
+            b = false;
+        }
+
+        return (this.name.equals(that.name)) && b;
     }
 
     public String getName() {
