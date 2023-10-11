@@ -154,13 +154,13 @@ class RecipeGeneratorTest {
 
         generator.addRecipe(recipe1);
         for (int i = 0; i < recipeArrayList.size(); i++) {
-            assertTrue(recipeArrayList.get(i).equals(generator.getRecipeList().get(i)));
+            assertTrue(recipeArrayList.get(i).equalIngredientsAndName(generator.getRecipeList().get(i)));
         }
 
         recipeArrayList.add(recipe1);
         generator.addRecipe(recipe1);
         for (int i = 0; i < recipeArrayList.size(); i++) {
-            assertTrue(recipeArrayList.get(i).equals(generator.getRecipeList().get(i)));
+            assertTrue(recipeArrayList.get(i).equalIngredientsAndName(generator.getRecipeList().get(i)));
         }
 
     }
@@ -200,7 +200,7 @@ class RecipeGeneratorTest {
         recipeArrayList.add(recipe1);
 
         for (int i = 0; i < recipeArrayList.size(); i++) {
-            assertTrue(recipeArrayList.get(i).equals(generator.getCookableRecipes().get(i)));
+            assertTrue(recipeArrayList.get(i).equalIngredientsAndName(generator.getCookableRecipes().get(i)));
         }
     }
 
@@ -223,7 +223,7 @@ class RecipeGeneratorTest {
         recipeArrayList.add(recipe2);
 
         for (int i = 0; i < recipeArrayList.size(); i++) {
-            assertTrue(recipeArrayList.get(i).equals(generator.getCookableRecipes().get(i)));
+            assertTrue(recipeArrayList.get(i).equalIngredientsAndName(generator.getCookableRecipes().get(i)));
         }
     }
 
@@ -247,7 +247,7 @@ class RecipeGeneratorTest {
         recipeArrayList.add(recipe3);
 
         for (int i = 0; i < recipeArrayList.size(); i++) {
-            assertTrue(recipeArrayList.get(i).equals(generator.getCookableRecipes().get(i)));
+            assertTrue(recipeArrayList.get(i).equalIngredientsAndName(generator.getCookableRecipes().get(i)));
         }
     }
 
