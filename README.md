@@ -18,3 +18,5 @@ easier for the user to plan their next meal.
 - As a user, I want to be able to create a Recipe with name, preparation steps, and Ingredients from ListOfIngredients.
 - As a user, I want to be able to view my Recipe. 
 - As a user, I want to check if I have all the ingredients a Recipe needs. 
+- As a user, I want to be able to save all my recipes to a file.
+- As a user, I want to be able to load my recipes from a file.
