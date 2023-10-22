@@ -7,6 +7,7 @@ import model.RecipeGenerator;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 //represents the console seen by the user
@@ -169,7 +170,7 @@ public class RecipeGeneratorConsole {
     private String acceptInputString() {
         try {
             String str = scanner.nextLine();
-            if (str.strip() == "") {
+            if (Objects.equals(str.strip(), "")) {
                 System.out.print("Please enter a valid input: ");
                 return acceptInputString();
             } else {

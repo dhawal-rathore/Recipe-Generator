@@ -36,8 +36,8 @@ public class Recipe {
     }
 
     //EFFECTS: checks if available ingredients are sufficient to cook
-    public Boolean canRecipeBeMade(List<Ingredient> availableIngredients) {
-        Boolean b = true;
+    public boolean canRecipeBeMade(List<Ingredient> availableIngredients) {
+        boolean b = true;
         for (Ingredient recipeIngredient : ingredientList) {
             int ingredientIndex = getIndexOfIngredient(recipeIngredient,availableIngredients);
             if (ingredientIndex != -1) {
