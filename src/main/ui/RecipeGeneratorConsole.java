@@ -156,6 +156,8 @@ public class RecipeGeneratorConsole {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets shouldProgram continue running to false
     private void stopProgram() {
         shouldProgramContinueRunning = false;
         emptyLines(1);
@@ -193,12 +195,14 @@ public class RecipeGeneratorConsole {
         }
     }
 
+    //EFFECTS: prints empty lines n times
     private void emptyLines(int n) {
         for (int i = 0; i < n; i++) {
             System.out.println();
         }
     }
 
+    //EFFECTS: gets ingredients with quantities from user
     private ArrayList<Ingredient> getIngredientListFromUser() {
         System.out.print("Enter number of ingredients in Recipe: ");
         int n = acceptInputDouble().intValue();
@@ -211,9 +215,10 @@ public class RecipeGeneratorConsole {
             Ingredient ingredient = new Ingredient(ingredientName,quantity);
             ingredientArrayList.add(ingredient);
         }
-        return  ingredientArrayList;
+        return ingredientArrayList;
     }
 
+    //EFFECTS: gets recipe steps from user and returns an array of string
     private ArrayList<String> getRecipeStepsFromUser() {
         System.out.print("Enter number of steps in Recipe: ");
         int n = acceptInputDouble().intValue();

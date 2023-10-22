@@ -55,6 +55,7 @@ public class Recipe {
         return b;
     }
 
+    //EFFECTS: returns index of ingredient if in list, else returns 0
     private int getIndexOfIngredient(Ingredient recipeIngredient, List<Ingredient> availableIngredients) {
         for (int i = 0; i < availableIngredients.size(); i++) {
             if (availableIngredients.get(i).equalNames(recipeIngredient)) {
