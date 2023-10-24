@@ -1,17 +1,26 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 //represents the overlying class that the UI interacts with
-public class RecipeGenerator {
+public class RecipeGenerator implements Writable {
 
-    List<Ingredient> availableIngredients;
-    List<Recipe> recipeList;
+    private final List<Ingredient> availableIngredients;
+    private final List<Recipe> recipeList;
 
     public RecipeGenerator() {
         availableIngredients = new ArrayList<>();
         recipeList = new ArrayList<>();
+    }
+
+    public RecipeGenerator(List<Ingredient> availableIngredients,List<Recipe> recipeList) {
+        this.availableIngredients = availableIngredients;
+        this.recipeList = recipeList;
     }
 
     //MODIFIES: this
@@ -59,6 +68,33 @@ public class RecipeGenerator {
             }
         }
         return cookableRecipe;
+    }
+
+    //EFFECTS: returns recipeGenerator as a JSON Array
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("ingredients",ingredientsToJson());
+        json.put("recipes",recipeToJson());
+        return json;
+    }
+
+    //EFFECTS: returns ingredients as a JSON Array
+    private JSONArray ingredientsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Ingredient ingredient : availableIngredients) {
+            jsonArray.put(ingredient.toJson());
+        }
+        return jsonArray;
+    }
+
+    //EFFECTS: returns ingredients as a JSON Array
+    private JSONArray recipeToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Recipe recipe : recipeList) {
+            jsonArray.put(recipe.toJson());
+        }
+        return jsonArray;
     }
 
     public List<Ingredient> getAvailableIngredients() {

@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 //represents the console seen by the user
 public class RecipeGeneratorConsole {
-    private Scanner scanner;
-    private RecipeGenerator generator;
+    private final Scanner scanner;
+    private final RecipeGenerator generator;
 
     private Boolean shouldProgramContinueRunning;
 
@@ -83,7 +83,7 @@ public class RecipeGeneratorConsole {
         System.out.print("Enter name of Ingredient: ");
         String str = acceptInputString();
         generator.createIngredient(str);
-        System.out.println(String.format("Added %s successfully to available ingredients with no quantity.",str));
+        System.out.printf("Added %s successfully to available ingredients with no quantity.%n",str);
     }
 
     //MODIFIES: this
@@ -97,9 +97,9 @@ public class RecipeGeneratorConsole {
         Double quantity = acceptInputDouble();
         Boolean success = generator.addQuantityToIngredient(name,quantity);
         if (success) {
-            System.out.println(String.format("%.2f %s added successfully to available ingredients ", quantity, name));
+            System.out.printf("%.2f %s added successfully to available ingredients %n", quantity, name);
         } else {
-            System.out.println(String.format("%s not found in available ingredients", name));
+            System.out.printf("%s not found in available ingredients%n", name);
         }
     }
 
