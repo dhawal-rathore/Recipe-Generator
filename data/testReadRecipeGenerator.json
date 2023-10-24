@@ -1,0 +1,66 @@
+{
+    "ingredients": [
+      {
+        "name" : "Ingredient1",
+        "quantity" : 10.0
+      },
+      {
+        "name" : "Ingredient2",
+        "quantity" : 15.0
+      },
+      {
+        "name" : "Ingredient3",
+        "quantity" : 0.0
+      }
+  ],
+  "recipes": [
+    {
+      "name" : "Recipe1",
+      "ingredients" : [
+        {
+          "name" : "Ingredient1",
+          "quantity" : 5.0
+        },
+        {
+          "name" : "Ingredient2",
+          "quantity" : 3.0
+        }
+      ],
+      "instructions" : [
+        {
+          "step": "Recipe Step 1"
+        },
+        {
+          "step": "Recipe Step 2"
+        },
+        {
+          "step": "Recipe Step 3"
+        }
+      ]
+    },
+    {
+      "name" : "Recipe2",
+      "ingredients" : [
+        {
+          "name" : "Ingredient3",
+          "quantity" : 15.0
+        },
+        {
+          "name" : "Ingredient2",
+          "quantity" : 3.0
+        }
+      ],
+      "instructions" : [
+        {
+          "step": "Recipe Step 1"
+        },
+        {
+          "step": "Recipe Step 2"
+        },
+        {
+          "step": "Recipe Step 3"
+        }
+      ]
+    }
+  ]
+}
