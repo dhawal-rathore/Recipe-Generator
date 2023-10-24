@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents an Ingredient with name and quantity
-public class Ingredient {
-    private String name;
+public class Ingredient implements Writable {
+    private final String name;
     private Double quantity;
 
     public Ingredient(String name, double quantity) {
@@ -38,6 +41,15 @@ public class Ingredient {
     //EFFECTS: returns True if Ingredients have the same name
     public Boolean equalNames(Ingredient that) {
         return this.name.equals(that.name);
+    }
+
+    //EFFECTS : returns ingredient as JSON Object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name",name);
+        json.put("quantity",quantity);
+        return json;
     }
 
     //EFFECTS: returns String with name and quantity of ingredient
