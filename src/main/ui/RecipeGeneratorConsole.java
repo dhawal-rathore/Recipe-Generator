@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 //represents the console seen by the user
 public class RecipeGeneratorConsole {
-    private final Scanner scanner;
-    private final RecipeGenerator generator;
+    private Scanner scanner;
+    private RecipeGenerator generator;
 
     private Boolean shouldProgramContinueRunning;
 
