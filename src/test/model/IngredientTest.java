@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -60,5 +61,13 @@ class IngredientTest {
         assertFalse(ingredient1.equals(ingredient4));
         assertFalse(ingredient1.equals(ingredient2));
         assertFalse(ingredient1.equals(ingredient3));
+    }
+
+    @Test
+    void testToJson() {
+        JSONObject ingredient1Json = new JSONObject();
+        ingredient1Json.put("name",ingredient1.getName());
+        ingredient1Json.put("quantity",ingredient1.getQuantity());
+        assertTrue(ingredient1Json.similar(ingredient1.toJson()));
     }
 }

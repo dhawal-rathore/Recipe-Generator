@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -249,6 +251,38 @@ class RecipeGeneratorTest {
         for (int i = 0; i < recipeArrayList.size(); i++) {
             assertTrue(recipeArrayList.get(i).equalIngredientsAndName(generator.getCookableRecipes().get(i)));
         }
+    }
+
+    @Test
+    void testToJson(){
+        generator.addRecipe(recipe1);
+        generator.addRecipe(recipe2);
+        generator.addRecipe(recipe3);
+
+        generator.createIngredient("ingredient1");
+        generator.createIngredient("ingredient2");
+        generator.createIngredient("ingredient3");
+
+        generator.addQuantityToIngredient("ingredient1",9.0);
+        generator.addQuantityToIngredient("ingredient2",10.0);
+        generator.addQuantityToIngredient("ingredient3",10.0);
+
+        JSONObject generatorJson = new JSONObject();
+        JSONArray ingredientArrayJson = new JSONArray();
+        JSONArray recipeArrayJson = new JSONArray();
+
+        for (Ingredient ingredient : generator.getAvailableIngredients()) {
+            ingredientArrayJson.put(ingredient.toJson());
+        }
+
+        for(Recipe recipe : generator.getRecipeList()) {
+            recipeArrayJson.put(recipe.toJson());
+        }
+
+        generatorJson.put("ingredients",ingredientArrayJson);
+        generatorJson.put("recipes",recipeArrayJson);
+
+        assertTrue(generatorJson.similar(generator.toJson()));
     }
 
     //EFFECTS: creates 3 recipes with varying amounts of ingredient quantities needed

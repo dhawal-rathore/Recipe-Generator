@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -218,7 +220,6 @@ class RecipeTest {
         assertFalse(recipe1.equalIngredientsAndName(recipe3));
     }
 
-
     @Test
     void testEqualIngredientsWhenEqualSizeDifferentIngredient() {
         Ingredient recipeIngredient1 = new Ingredient("ingredient1",5.0);
@@ -238,7 +239,7 @@ class RecipeTest {
         Ingredient recipeIngredient2 = new Ingredient("ingredient2",10.0);
         Ingredient recipeIngredient3 = new Ingredient("ingredient3",10.0);
         recipe1.addIngredient(recipeIngredient1);
-        recipe3.addIngredient(recipeIngredient1);
+        recipe3.addIngredient(recipeIngredient2);
         recipe3.addIngredient(recipeIngredient3);
 
         assertFalse(recipe1.equalIngredientsAndName(recipe3));
@@ -247,5 +248,32 @@ class RecipeTest {
     @Test
     void testGetName() {
         assertEquals("recipe1",recipe1.getName());
+    }
+
+    @Test
+    void testToJson() {
+        Ingredient ingredient1 = new Ingredient("ingredient1",10.0);
+        Ingredient ingredient2 = new Ingredient("ingredient2",5.5);
+        recipe1.addIngredient(ingredient1);
+        recipe1.addIngredient(ingredient2);
+        recipe1.addRecipeStep("Step 1");
+        recipe1.addRecipeStep("Step 2");
+
+        JSONObject recipe1Json = new JSONObject();
+        JSONArray ingredientArrayJson = new JSONArray(recipe1.getIngredientList());
+        JSONArray instructionArrayJson = new JSONArray();
+        JSONObject recipeStep1 = new JSONObject();
+        JSONObject recipeStep2 = new JSONObject();
+
+        recipeStep1.put("step","Step 1");
+        instructionArrayJson.put(recipeStep1);
+        recipeStep2.put("step","Step 2");
+        instructionArrayJson.put(recipeStep2);
+
+        recipe1Json.put("name",recipe1.getName());
+        recipe1Json.put("ingredients",ingredientArrayJson);
+        recipe1Json.put("instructions",instructionArrayJson);
+
+        assertTrue(recipe1Json.similar(recipe1.toJson()));
     }
 }
