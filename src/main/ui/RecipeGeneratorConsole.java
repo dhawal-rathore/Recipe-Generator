@@ -3,19 +3,20 @@ package ui;
 import model.Ingredient;
 import model.Recipe;
 import model.RecipeGenerator;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-
-import java.util.Objects;
-import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.*;
 
 //represents the console seen by the user
 public class RecipeGeneratorConsole {
     private Scanner scanner;
     private RecipeGenerator generator;
-
     private Boolean shouldProgramContinueRunning;
+
+    private static final String FILE_LOCATION = "./data/RecipeGenerator.json";
 
     public RecipeGeneratorConsole() {
         scanner = new Scanner(System.in);
@@ -26,9 +27,9 @@ public class RecipeGeneratorConsole {
 
     //EFFECTS: accepts choice from user and displays functionality related to the choice
     public void mainInterface() {
-        emptyLines(2);
+        emptyLines(1);
         System.out.println("RECIPE GENERATOR");
-        emptyLines(2);
+        emptyLines(1);
         System.out.println("Please enter a number corresponding to the option you wish to select: ");
         System.out.println("[1] Add an ingredient to available ingredients.");
         System.out.println("[2] Add quantity to already available ingredient. ");
@@ -36,7 +37,9 @@ public class RecipeGeneratorConsole {
         System.out.println("[4] Add Recipe to Recipe List");
         System.out.println("[5] Look up Recipe with name ");
         System.out.println("[6] See all Recipes you can cook with available ingredients. ");
-        System.out.println("[7] Quit");
+        System.out.println("[7] Save recipes and ingredients to file. ");
+        System.out.println("[8] Load saved data. ");
+        System.out.println("[9] Quit");
 
         emptyLines(1);
         System.out.print("Enter your choice: ");
@@ -68,6 +71,12 @@ public class RecipeGeneratorConsole {
                 showCookableRecipe();
                 break;
             case 7:
+                writeToFile();
+                break;
+            case 8:
+                readSavedFile();
+                break;
+            case 9:
                 stopProgram();
                 break;
             default:
@@ -78,7 +87,6 @@ public class RecipeGeneratorConsole {
     //MODIFIES: this
     //EFFECTS: Accepts Ingredient from user and adds it to availableIngredients with quantity 0
     private void addIngredientToAvailableIngredients() {
-        System.out.println();
         System.out.println("Adding Ingredient to Available Ingredients.");
         System.out.print("Enter name of Ingredient: ");
         String str = acceptInputString();
@@ -106,7 +114,7 @@ public class RecipeGeneratorConsole {
     //EFFECTS: shows all available ingredients with quantity
     private void showIngredients() {
         System.out.println("Showing available ingredients with quantity");
-        emptyLines(2);
+        emptyLines(1);
         for (Ingredient ingredient : generator.getAvailableIngredients()) {
             System.out.println(ingredient.printable());
         }
@@ -116,7 +124,6 @@ public class RecipeGeneratorConsole {
     //EFFECTS: gets user to input name, ingredients(have to be in availableIngredients), and steps
     //         and adds recipe to RecipeList
     private void createRecipe() {
-        System.out.println();
         System.out.println("Creating Recipe: ");
         System.out.print("Enter name of Recipe: ");
         String name = acceptInputString();
@@ -126,13 +133,12 @@ public class RecipeGeneratorConsole {
         generator.addRecipe(recipe);
     }
 
-    //MODIFIES: this
     //EFFECTS: allows user to view recipe with name given by user
     private void viewRecipe() {
-        System.out.println();
         System.out.println("Search recipe.");
-        System.out.print("Enter name of Recipe: ");
+        System.out.print("Enter name of recipe: ");
         String name = acceptInputString();
+        emptyLines(1);
         boolean b = false;
         for (Recipe recipe : generator.getRecipeList()) {
             if (recipe.getName().equals(name)) {
@@ -149,12 +155,15 @@ public class RecipeGeneratorConsole {
     //EFFECTS: allows user to view recipe that can be cooked with ingredients with enough quantity available
     private void showCookableRecipe() {
         System.out.println();
-        System.out.println("Showing Recipes which you can cook right now");
+        System.out.println("Showing recipes which you can cook right now");
         emptyLines(2);
-        for (Recipe recipe : generator.getCookableRecipes()) {
-            System.out.println(recipe.getName());
+        if (generator.getCookableRecipes().size() != 0) {
+            for (Recipe recipe : generator.getCookableRecipes()) {
+                System.out.println(recipe.getName());
+            }
+        } else {
+            System.out.println("No recipes can be cooked with ingredients available.");
         }
-
     }
 
     //MODIFIES: this
@@ -205,13 +214,13 @@ public class RecipeGeneratorConsole {
 
     //EFFECTS: gets ingredients with quantities from user
     private ArrayList<Ingredient> getIngredientListFromUser() {
-        System.out.print("Enter number of ingredients in Recipe: ");
+        System.out.print("Enter number of ingredients in recipe: ");
         int n = acceptInputDouble().intValue();
         ArrayList<Ingredient> ingredientArrayList = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            System.out.print("Enter name of Ingredient: ");
+            System.out.print("Enter name of ingredient: ");
             String ingredientName = acceptInputString();
-            System.out.print("Enter Quantity of Ingredient needed: ");
+            System.out.print("Enter quantity of ingredient needed: ");
             Double quantity = acceptInputDouble();
             Ingredient ingredient = new Ingredient(ingredientName,quantity);
             ingredientArrayList.add(ingredient);
@@ -225,11 +234,37 @@ public class RecipeGeneratorConsole {
         int n = acceptInputDouble().intValue();
         ArrayList<String> recipeStepList = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            System.out.print("Enter Step: ");
+            System.out.printf("Enter Step %d: ",i);
             String recipeStep = acceptInputString();
             recipeStepList.add(recipeStep);
         }
         return recipeStepList;
+    }
+
+    //EFFECTS: writes generator to FILE_LOCATION
+    private void writeToFile() {
+        try {
+            JsonWriter writer = new JsonWriter(FILE_LOCATION);
+            writer.open();
+            writer.write(generator);
+            writer.close();
+            System.out.println("Successfully written to file.");
+        } catch (FileNotFoundException e) {
+            System.err.println("File cannot be written");
+
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: reads saved file at FILE_LOCATION
+    private void readSavedFile() {
+        try {
+            JsonReader reader = new JsonReader(FILE_LOCATION);
+            generator = reader.read();
+            System.out.println("Read from file successful.");
+        } catch (IOException e) {
+            System.out.println("Please save to file first and try again.");
+        }
     }
 
     public Boolean getShouldProgramContinueRunning() {
