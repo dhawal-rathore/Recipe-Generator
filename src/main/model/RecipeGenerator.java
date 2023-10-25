@@ -18,11 +18,6 @@ public class RecipeGenerator implements Writable {
         recipeList = new ArrayList<>();
     }
 
-    public RecipeGenerator(List<Ingredient> availableIngredients,List<Recipe> recipeList) {
-        this.availableIngredients = availableIngredients;
-        this.recipeList = recipeList;
-    }
-
     //MODIFIES: this
     //EFFECTS: adds Ingredient to available ingredients with quantity 0 if it isn't already in ingredients.
     public void createIngredient(String name) {
