@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 //github: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads recipeGenerator from JSON data stored in file
 public class JsonReader {
     private final String source;
 
@@ -26,7 +26,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads generator from file and returns it;
     // throws IOException if an error occurs reading data from file
     public RecipeGenerator read() throws IOException {
         String jsonData = readFile(source);
@@ -45,7 +45,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses RecipeGenerator from JSON object and returns it
     private RecipeGenerator parseRecipeGenerator(JSONObject jsonObject) {
         RecipeGenerator generator = new RecipeGenerator();
         addIngredients(generator, jsonObject);
