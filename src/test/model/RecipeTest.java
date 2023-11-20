@@ -286,10 +286,12 @@ class RecipeTest {
         recipe1.addRecipeStep("Step 1");
         recipe1.addRecipeStep("Step 2");
 
-        String expected = "<html><h1>recipe1</h1><br>" +
-                "<h2>Ingredients:</h2><br><ul><li>10.0 ingredient1</li><li>5.5 ingredient2</li></ul>" +
-                "<h2>Steps:</h2><br><ol><li>Step 1</li><li>Step 2</li></ol>";
-
+        String expected = "<html><body style=\"margin:15;padding:0\">" +
+                "<p style=\"font-size:30px\">recipe1</p><br>" +
+                "<p style= \"font-size:25px\">Ingredients:</p>" +
+                "<ul><li>10.0 ingredient1</li><li>5.5 ingredient2</li></ul>" +
+                "<p style=\"font-size:25px\">Steps:</p><ol><li>Step 1</li><li>Step 2</li></ol>" +
+                "</body></html>";
         assertEquals(expected,recipe1.toHtml());
     }
 }

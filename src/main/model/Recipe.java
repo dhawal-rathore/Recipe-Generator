@@ -137,19 +137,22 @@ public class Recipe implements Writable {
     public String toHtml() {
         StringBuilder builder = new StringBuilder();
         builder.append("<html>");
-        builder.append(String.format("<h1>%s</h1><br>",name));
-        builder.append("<h2>Ingredients:</h2><br>");
+        builder.append("<body style=\"margin:15;padding:0\">");
+        builder.append(String.format("<p style=\"font-size:30px\">%s</p><br>",name));
+        builder.append("<p style= \"font-size:25px\">Ingredients:</p>");
         builder.append("<ul>");
         for (Ingredient ingredient : ingredientList) {
             builder.append(String.format("<li>%.1f %s</li>",ingredient.getQuantity(),ingredient.getName()));
         }
         builder.append("</ul>");
-        builder.append("<h2>Steps:</h2><br>");
+        builder.append("<p style=\"font-size:25px\">Steps:</p>");
         builder.append("<ol>");
         for (int i = 0; i < recipeInstructions.size(); i++) {
             builder.append(String.format("<li>%s</li>",recipeInstructions.get(i)));
         }
         builder.append("</ol>");
+        builder.append("</body>");
+        builder.append("</html>");
         return builder.toString();
     }
 
