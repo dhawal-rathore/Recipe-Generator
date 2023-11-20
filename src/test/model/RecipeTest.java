@@ -276,4 +276,20 @@ class RecipeTest {
 
         assertTrue(recipe1Json.similar(recipe1.toJson()));
     }
+
+    @Test
+    void testToHtml() {
+        Ingredient ingredient1 = new Ingredient("ingredient1",10.0);
+        Ingredient ingredient2 = new Ingredient("ingredient2",5.5);
+        recipe1.addIngredient(ingredient1);
+        recipe1.addIngredient(ingredient2);
+        recipe1.addRecipeStep("Step 1");
+        recipe1.addRecipeStep("Step 2");
+
+        String expected = "<html><h1>recipe1</h1><br>" +
+                "<h2>Ingredients:</h2><br><ul><li>10.0 ingredient1</li><li>5.5 ingredient2</li></ul>" +
+                "<h2>Steps:</h2><br><ol><li>Step 1</li><li>Step 2</li></ol>";
+
+        assertEquals(expected,recipe1.toHtml());
+    }
 }
