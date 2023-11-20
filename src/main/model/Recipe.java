@@ -133,6 +133,26 @@ public class Recipe implements Writable {
         return jsonArray;
     }
 
+    //EFFECTS: returns recipe as a string which can be parsed as html
+    public String toHtml() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("<html>");
+        builder.append(String.format("<h1>%s</h1><br>",name));
+        builder.append("<h2>Ingredients:</h2><br>");
+        builder.append("<ul>");
+        for (Ingredient ingredient : ingredientList) {
+            builder.append(String.format("<li>%.1f %s</li>",ingredient.getQuantity(),ingredient.getName()));
+        }
+        builder.append("</ul>");
+        builder.append("<h2>Steps:</h2><br>");
+        builder.append("<ol>");
+        for (int i = 0; i < recipeInstructions.size(); i++) {
+            builder.append(String.format("<li>%s</li>",recipeInstructions.get(i)));
+        }
+        builder.append("</ol>");
+        return builder.toString();
+    }
+
     public String getName() {
         return name;
     }
