@@ -45,5 +45,5 @@ public class IngredientInputPanel extends JPanel {
         submitButton.setBounds(50, 100, 200, 30);
         submitButton.setActionCommand("addAvailableIngredient");
         return submitButton;
-        }
+    }
 }
