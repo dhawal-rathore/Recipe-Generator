@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+//represents a panel which shows a list of recipes which is scrollable
 public class RecipeListPanel extends JPanel {
     private MainFrame originFrame;
 
@@ -28,6 +29,7 @@ public class RecipeListPanel extends JPanel {
 
     }
 
+    //represents a panel of a list of ingredients which is not scrollable
     private class RecipeButtons extends JPanel {
 
         public RecipeButtons(List<Recipe> recipeList) {
@@ -42,6 +44,7 @@ public class RecipeListPanel extends JPanel {
 
         }
 
+        //EFFECTS: creates a list of buttons, initialises it for the list of recipes and returns the list
         private List<JButton> getButtons(List<Recipe> recipeList, ActionListener listener) {
             ArrayList<JButton> buttonList = new ArrayList<>();
             for (Recipe recipe : recipeList) {

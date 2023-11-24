@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+//represents a panel which shows a list of ingredients which is scrollable
 public class IngredientListPanel extends JPanel {
     private MainFrame originFrame;
 
@@ -27,6 +28,7 @@ public class IngredientListPanel extends JPanel {
 
     }
 
+    //represents a panel of a list of ingredients which is not scrollable
     private class IngredientButtons extends JPanel {
 
         public IngredientButtons(List<Ingredient> ingredients) {
@@ -41,6 +43,7 @@ public class IngredientListPanel extends JPanel {
 
         }
 
+        //EFFECTS: creates a list of buttons, initialises it for the list of ingredients and returns the list
         private List<JButton> getButtons(List<Ingredient> ingredients, ActionListener listener) {
             ArrayList<JButton> buttonList = new ArrayList<>();
             for (Ingredient ingredient : ingredients) {

@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//represents a panel which accepts input from the user to add ingredient
 public class IngredientInputPanel extends JPanel {
 
     public IngredientInputPanel(MainFrame originalFrame) {
@@ -40,6 +41,7 @@ public class IngredientInputPanel extends JPanel {
 
     }
 
+    //EFFECTS: sets up button
     private JButton buttonSetup() {
         JButton submitButton = new JButton("Submit");
         submitButton.setBounds(50, 100, 200, 30);

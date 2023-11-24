@@ -6,6 +6,7 @@ import ui.gui.MainFrame;
 import javax.swing.*;
 import java.awt.*;
 
+//represents a panel which represents an ingredient
 public class IngredientPanel extends JPanel {
 
     public IngredientPanel(Ingredient ingredient) {
@@ -24,17 +25,20 @@ public class IngredientPanel extends JPanel {
 
     }
 
+    //EFFECTS: creates a label with ingredient name and returns it
     private JLabel createNameLabel(Ingredient ingredient) {
         JLabel name = new JLabel(String.format("Name : %s",ingredient.getName()),SwingConstants.CENTER);
-        return buttonSetup(name);
+        return labelSetup(name);
     }
 
+    //EFFECTS: creates a label with ingredient quantity and returns it
     private JLabel createQuantityLabel(Ingredient ingredient) {
         JLabel quantity = new JLabel(String.format("Quantity: %.1f",ingredient.getQuantity()),SwingConstants.CENTER);
-        return buttonSetup(quantity);
+        return labelSetup(quantity);
     }
 
-    private JLabel buttonSetup(JLabel label) {
+    //EFFECTS: adds common functionality to a label
+    private JLabel labelSetup(JLabel label) {
         label.setMinimumSize(new Dimension(MainFrame.WIDTH / 2,MainFrame.HEIGHT / 2));
         label.setPreferredSize(new Dimension(MainFrame.WIDTH / 2,MainFrame.HEIGHT / 2));
         label.setBorder(BorderFactory.createLineBorder(Color.black));

@@ -2,11 +2,11 @@ package ui.gui.panels;
 
 import model.Recipe;
 import ui.gui.MainFrame;
-import ui.gui.listeners.ButtonListener;
 
 import javax.swing.*;
 import java.awt.*;
 
+//represents a panel which represents a recipe and is scrollable
 public class RecipePanel extends JPanel {
 
     public RecipePanel(Recipe recipe) {
@@ -24,6 +24,7 @@ public class RecipePanel extends JPanel {
 
     }
 
+    //EFFECTS: returns a panel containing the recipe
     private static JPanel fullRecipePanel(Recipe recipe) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
@@ -34,6 +35,7 @@ public class RecipePanel extends JPanel {
         return panel;
     }
 
+    //EFFECTS: returns a label containing the recipe
     private static JLabel recipeLabel(Recipe recipe) {
         JLabel recipeLabel = new JLabel();
         recipeLabel.setText(recipe.toHtml());
