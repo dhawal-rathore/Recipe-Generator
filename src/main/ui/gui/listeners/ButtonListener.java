@@ -20,7 +20,7 @@ public class ButtonListener implements ActionListener {
 
     //MODIFIES: originalFrame
     //EFFECTS: reads actionCommand and runs appropriate method
-    @SuppressWarnings("checkstyle:MethodLength")
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void actionPerformed(ActionEvent e) {
         String actionCommand = ((JButton)e.getSource()).getActionCommand();
         switch (actionCommand) {
