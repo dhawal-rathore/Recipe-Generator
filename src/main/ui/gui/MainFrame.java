@@ -43,6 +43,8 @@ public class MainFrame extends JFrame {
         switchPanelTo(new MainPanel(generator,this));
     }
 
+    //MODIFIES: this
+    //EFFECTS: switches panel in frame to the given one, also implements functionality for navigation buttons
     public void switchPanelTo(JPanel panel) {
         changePanel(panel);
 
@@ -56,6 +58,8 @@ public class MainFrame extends JFrame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: switches panel to previous panel
     public void previousPanel() {
         if (visitedPanels.size() > 1) {
             JPanel panel = visitedPanels.removeLast();
@@ -64,6 +68,8 @@ public class MainFrame extends JFrame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: switches panel to next panel if the user has previously gone back to another panel
     public void nextPanel() {
         if (!forwardPanels.isEmpty()) {
             JPanel panel = forwardPanels.getLast();
@@ -72,11 +78,15 @@ public class MainFrame extends JFrame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: creates ingredient and adds to generator
     public void addIngredient(String name, double quantity) {
         generator.createIngredient(name);
         generator.addQuantityToIngredient(name,quantity);
     }
 
+    //MODIFIES: this
+    //EFFECTS: cleans frame, switches panel to the given panel and repaints frame with title bar
     private void changePanel(JPanel panel) {
         getContentPane().removeAll();
         addTitle();
@@ -87,6 +97,8 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
+    //MODIFIES: this
+    //EFFECTS: creates title bar with navigation buttons and adds it to the frame
     private void addTitle() {
         JToolBar toolBar = new JToolBar("Main");
         addNavigationButtons(toolBar);
@@ -95,6 +107,8 @@ public class MainFrame extends JFrame {
         add(toolBar,BorderLayout.PAGE_START);
     }
 
+    //MODIFIES: toolBar
+    //EFFECTS: adds navigation buttons to toolBar
     private void addNavigationButtons(JToolBar toolBar) {
         JButton button = null;
         button = makeNavigationButton("back24", "previous",
@@ -105,7 +119,8 @@ public class MainFrame extends JFrame {
         toolBar.add(button);
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: shows a dialog box that asks user to load generator from memory
     private void askUserToLoad() {
         int n = JOptionPane.showConfirmDialog(
                 this,
@@ -119,41 +134,18 @@ public class MainFrame extends JFrame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: loads json file representing generator from FILE_LOCATION
     private void loadGenerator() {
         try {
             JsonReader reader = new JsonReader(FILE_LOCATION);
             generator = reader.read();
-            System.out.println("Read from file successful.");
         } catch (IOException e) {
-            System.out.println("Please save to file first and try again.");
+            System.err.println("Please save to file first and try again.");
         }
     }
 
-    private void saveGenerator() {
-        try {
-            JsonWriter writer = new JsonWriter(FILE_LOCATION);
-            writer.open();
-            writer.write(generator);
-            writer.close();
-            System.out.println("Successfully written to file.");
-        } catch (FileNotFoundException e) {
-            System.err.println("File cannot be written");
-        }
-    }
-
-    private void frameSetup() {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        setLayout(new BorderLayout());
-        setMinimumSize(new Dimension(WIDTH,HEIGHT));
-        setPreferredSize(new Dimension(WIDTH,HEIGHT));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setUndecorated(false);
-    }
-
+    //EFFECTS: shows a dialog box that asks user to save generator to memory
     private void askUserToSave() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
@@ -168,6 +160,35 @@ public class MainFrame extends JFrame {
                 }
             }
         });
+    }
+
+    //EFFECTS: saves json file representing generator to FILE_LOCATION
+    private void saveGenerator() {
+        try {
+            JsonWriter writer = new JsonWriter(FILE_LOCATION);
+            writer.open();
+            writer.write(generator);
+            writer.close();
+            System.out.println("Successfully written to file.");
+        } catch (FileNotFoundException e) {
+            System.err.println("File cannot be written");
+        }
+    }
+
+
+    //MODIFIES: this
+    //EFFECTS: sets up frame
+    private void frameSetup() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        setLayout(new BorderLayout());
+        setMinimumSize(new Dimension(WIDTH,HEIGHT));
+        setPreferredSize(new Dimension(WIDTH,HEIGHT));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setUndecorated(false);
     }
 
     //from java swing documentation
