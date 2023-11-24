@@ -23,13 +23,13 @@ public class RecipeGenerator implements Writable {
     public void createIngredient(String name) {
         boolean alreadyPresent = false;
         for (Ingredient availableIngredient : availableIngredients) {
-            if (availableIngredient.getName().equals(name)) {
+            if (availableIngredient.getName().equals(name.toLowerCase())) {
                 alreadyPresent = true;
                 break;
             }
         }
         if (!alreadyPresent) {
-            Ingredient ingredient = new Ingredient(name,0.0);
+            Ingredient ingredient = new Ingredient(name.toLowerCase(),0.0);
             availableIngredients.add(ingredient);
         }
     }
