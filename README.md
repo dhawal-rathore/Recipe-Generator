@@ -20,3 +20,5 @@ easier for the user to plan their next meal.
 - As a user, I want to check if I have all the ingredients a Recipe needs. 
 - As a user, I want to be able to save all my recipes to a file.
 - As a user, I want to be able to load my recipes from a file.
+- As a user, I want to be prompted with the option to load data from a file when the program starts and prompted with
+the option to save data to file when the application ends
