@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
     public static final int WIDTH = 400 * 3;
     public static final Font FONT = new Font("Helvetica", Font.PLAIN, 44);
     private static final String FILE_LOCATION = "./data/RecipeGenerator.json";
-    private static final String ICON_DIR = "data/";
+    private static final String ICON_DIR = "data/icons/";
 
     private RecipeGenerator generator;
     private LinkedList<JPanel> visitedPanels;
@@ -40,7 +40,6 @@ public class MainFrame extends JFrame {
 
         listener = new ButtonListener(this);
 
-//        recipeGeneratorSetup(generator);
         switchPanelTo(new MainPanel(generator,this));
     }
 
@@ -71,6 +70,11 @@ public class MainFrame extends JFrame {
             switchPanelTo(panel);
             forwardPanels.removeLast();
         }
+    }
+
+    public void addIngredient(String name, double quantity) {
+        generator.createIngredient(name);
+        generator.addQuantityToIngredient(name,quantity);
     }
 
     private void changePanel(JPanel panel) {
