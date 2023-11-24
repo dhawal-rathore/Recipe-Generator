@@ -12,6 +12,7 @@ class IngredientTest {
     Ingredient ingredient3;
     Ingredient ingredient4;
     Ingredient ingredient5;
+    Ingredient ingredient6;
 
 
     @BeforeEach
@@ -21,7 +22,7 @@ class IngredientTest {
         ingredient3 = new Ingredient("Ingredient3",10.0);
         ingredient4 = new Ingredient("ingredient1",20.0);
         ingredient5 = new Ingredient("Ingredient1",10.0);
-
+        ingredient6 = new Ingredient("Ingredient1",20.0);
     }
 
     @Test
@@ -61,6 +62,8 @@ class IngredientTest {
         assertFalse(ingredient1.equals(ingredient4));
         assertFalse(ingredient1.equals(ingredient2));
         assertFalse(ingredient1.equals(ingredient3));
+        assertFalse(ingredient1.equals(ingredient6));
+
     }
 
     @Test
