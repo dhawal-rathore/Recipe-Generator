@@ -40,15 +40,15 @@
     "ingredients": [
         {
             "quantity": 10,
-            "name": "Ingredient1"
+            "name": "ingredient1"
         },
         {
             "quantity": 15,
-            "name": "Ingredient2"
+            "name": "ingredient2"
         },
         {
             "quantity": 0,
-            "name": "Ingredient3"
+            "name": "ingredient3"
         }
     ]
 }
