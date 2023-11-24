@@ -189,50 +189,5 @@ public class MainFrame extends JFrame {
         button.setIcon(imageIcon);
         return button;
     }
-
-    //test method
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
-    private void recipeGeneratorSetup(RecipeGenerator generator) {
-        Recipe recipe1 = new Recipe("Recipe1");
-        Recipe recipe2 = new Recipe("Recipe2");
-        Recipe recipe3 = new Recipe("Recipe3");
-
-        Ingredient recipeIngredient1 = new Ingredient("ingredient1",5.0);
-        Ingredient recipeIngredient2 = new Ingredient("ingredient2",10.0);
-        Ingredient recipeIngredient3 = new Ingredient("ingredient3",10.0);
-        recipe1.addIngredient(recipeIngredient1);
-        recipe1.addIngredient(recipeIngredient2);
-        recipe1.addIngredient(recipeIngredient3);
-        recipe1.addRecipeStep("Step 1");
-        recipe1.addRecipeStep("Step 2");
-
-        recipeIngredient1 = new Ingredient("ingredient1",10.0);
-        recipeIngredient2 = new Ingredient("ingredient2",10.0);
-        recipeIngredient3 = new Ingredient("ingredient3",10.0);
-        recipe2.addIngredient(recipeIngredient1);
-        recipe2.addIngredient(recipeIngredient2);
-        recipe2.addIngredient(recipeIngredient3);
-        recipe2.addRecipeStep("Step 1");
-        recipe2.addRecipeStep("Step 2");
-
-        recipeIngredient1 = new Ingredient("ingredient1",20.0);
-        recipeIngredient2 = new Ingredient("ingredient2",20.0);
-        recipeIngredient3 = new Ingredient("ingredient3",20.0);
-        recipe3.addIngredient(recipeIngredient1);
-        recipe3.addIngredient(recipeIngredient2);
-        recipe3.addIngredient(recipeIngredient3);
-        recipe3.addRecipeStep("Step 1");
-        recipe3.addRecipeStep("Step 2");
-
-        generator.addRecipe(recipe1);
-        generator.addRecipe(recipe2);
-        generator.addRecipe(recipe3);
-
-        generator.createIngredient("ingredient1");
-        generator.createIngredient("ingredient2");
-        generator.createIngredient("ingredient3");
-
-    }
-
 }
 
