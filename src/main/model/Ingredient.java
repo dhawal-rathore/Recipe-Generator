@@ -40,7 +40,7 @@ public class Ingredient implements Writable {
 
     //EFFECTS: returns True if Ingredients have the same name
     public Boolean equalNames(Ingredient that) {
-        return this.name.equals(that.name);
+        return this.name.equalsIgnoreCase(that.name);
     }
 
     //EFFECTS : returns ingredient as JSON Object
