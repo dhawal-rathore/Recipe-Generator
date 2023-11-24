@@ -19,7 +19,7 @@ class IngredientTest {
         ingredient1 = new Ingredient("Ingredient1",10.0);
         ingredient2 = new Ingredient("Ingredient2", 2.0);
         ingredient3 = new Ingredient("Ingredient3",10.0);
-        ingredient4 = new Ingredient("Ingredient1",20.0);
+        ingredient4 = new Ingredient("ingredient1",20.0);
         ingredient5 = new Ingredient("Ingredient1",10.0);
 
     }
