@@ -27,11 +27,15 @@ public class MainPanel extends JPanel {
 
         JButton recipesButton = createRecipesButton();
         JButton ingredientButton = createAvailableIngredientButton();
+        JButton addIngredientButton =  createAddToAvailableIngredientsButton();
+        JButton showPreparableRecipesButton = createPreparableRecipesButton();
         JLabel banner = createBanner();
 
         add(banner,addConstraints(1,0,3,1));
         add(ingredientButton,addConstraints(1,2));
         add(recipesButton,addConstraints(1,3));
+        add(addIngredientButton,addConstraints(1,4));
+        add(showPreparableRecipesButton,addConstraints(1,5));
     }
 
     private JButton createRecipesButton() {
@@ -53,6 +57,25 @@ public class MainPanel extends JPanel {
 
         return buttonSetup(ingredientsButton);
     }
+
+    private JButton createAddToAvailableIngredientsButton() {
+        JButton addIngredientsButton = new JButton("Add to Available Ingredients");
+        addIngredientsButton.setActionCommand("changeToAddIngredientPanel");
+
+        return buttonSetup(addIngredientsButton);
+    }
+
+    private JButton createPreparableRecipesButton() {
+        JButton showPreparableRecipesButton = new JButton("Show Preparable Recipes");
+        showPreparableRecipesButton.setActionCommand("changeToRecipeListPanel");
+
+        List<Recipe> recipeList = generator.getCookableRecipes();
+        showPreparableRecipesButton.putClientProperty("recipeList",recipeList);
+
+        return buttonSetup(showPreparableRecipesButton);
+    }
+
+
 
 
     private JButton buttonSetup(JButton button) {
