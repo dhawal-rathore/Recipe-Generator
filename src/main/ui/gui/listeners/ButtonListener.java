@@ -3,10 +3,7 @@ package ui.gui.listeners;
 import model.Ingredient;
 import model.Recipe;
 import ui.gui.MainFrame;
-import ui.gui.panels.IngredientListPanel;
-import ui.gui.panels.IngredientPanel;
-import ui.gui.panels.RecipeListPanel;
-import ui.gui.panels.RecipePanel;
+import ui.gui.panels.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -36,6 +33,9 @@ public class ButtonListener implements ActionListener {
                 break;
             case "changeToRecipeListPanel":
                 changeToRecipeListPanel(e);
+                break;
+            case "changeToAddIngredientPanel":
+                changeToAddIngredientPanel();
                 break;
             case "previous":
                 changeToPreviousPanel();
@@ -70,7 +70,12 @@ public class ButtonListener implements ActionListener {
     private void changeToRecipeListPanel(ActionEvent e) {
         List<Recipe> recipeList;
         recipeList = (List<Recipe>) ((JButton)e.getSource()).getClientProperty("recipeList");
+        System.out.println(recipeList.size());
         originalFrame.switchPanelTo(new RecipeListPanel(recipeList,originalFrame));
+    }
+
+    private void changeToAddIngredientPanel() {
+        originalFrame.switchPanelTo(new IngredientInputPanel(originalFrame));
     }
 
     private void changeToPreviousPanel() {
