@@ -22,3 +22,9 @@ easier for the user to plan their next meal.
 - As a user, I want to be able to load my recipes from a file.
 - As a user, I want to be prompted with the option to load data from a file when the program starts and prompted with
 the option to save data to file when the application ends
+- 
+## Phase 4: Task 3 
+
+To improve my design, I would've liked to create an abstract file in GUI to display lists of buttons. It would reduce
+duplication in my code. I'd also like to separate the anonymous listener I used in IngredientInputPanel and separate it
+into another class, to make it more readable and allow addition of more functionality easier.
