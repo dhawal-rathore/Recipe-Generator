@@ -1,5 +1,7 @@
 package model;
 
+import model.log.Event;
+import model.log.EventLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -19,24 +21,28 @@ public class Recipe implements Writable {
         this.name = name;
         this.ingredientList = new ArrayList<>();
         this.recipeInstructions = new ArrayList<>();
+        EventLog.getInstance().logEvent(new Event("Created recipe"));
     }
 
     public Recipe(String name, List<Ingredient> ingredientList, List<String> recipeInstructions) {
         this.name = name;
         this.ingredientList = ingredientList;
         this.recipeInstructions = recipeInstructions;
+        EventLog.getInstance().logEvent(new Event("Created recipe with ingredients and instructions."));
     }
 
     //MODIFIES: this
     //EFFECTS: adds Ingredient to ingredientList
     public void addIngredient(Ingredient ingredient) {
         ingredientList.add(ingredient);
+        EventLog.getInstance().logEvent(new Event("added ingredient to recipe"));
     }
 
     //MODIFIES: this
     //EFFECTS: adds recipe step to recipeInstructions
     public void addRecipeStep(String recipeStep) {
         recipeInstructions.add(recipeStep);
+        EventLog.getInstance().logEvent(new Event("added step to recipe"));
     }
 
     //EFFECTS: checks if available ingredients are sufficient to cook

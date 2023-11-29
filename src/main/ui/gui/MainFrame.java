@@ -1,7 +1,7 @@
 package ui.gui;
 
-import model.Ingredient;
-import model.Recipe;
+import model.log.EventLog;
+import model.log.Event;
 import model.RecipeGenerator;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -111,11 +111,9 @@ public class MainFrame extends JFrame {
     //EFFECTS: adds navigation buttons to toolBar
     private void addNavigationButtons(JToolBar toolBar) {
         JButton button = null;
-        button = makeNavigationButton("back24", "previous",
-                "Previous");
+        button = makeNavigationButton("back24", "previous");
         toolBar.add(button);
-        button = makeNavigationButton("forward24", "forward",
-                "Forward");
+        button = makeNavigationButton("forward24", "forward");
         toolBar.add(button);
     }
 
@@ -158,6 +156,10 @@ public class MainFrame extends JFrame {
                 } else if (result == JOptionPane.NO_OPTION) {
                     MainFrame.this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 }
+                for (Event event : EventLog.getInstance()) {
+                    System.out.println(event.toString());
+                    System.out.println();
+                }
             }
         });
     }
@@ -194,7 +196,7 @@ public class MainFrame extends JFrame {
     //from java swing documentation
     //https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ToolBarDemo2Project/src/components/ToolBarDemo2.java
     //EFFECTS: creates a JButton with given parameters
-    private JButton makeNavigationButton(String imageName, String actionCommand, String altText) {
+    private JButton makeNavigationButton(String imageName, String actionCommand) {
 
         String imgLocation = ICON_DIR + imageName + ".png";
 

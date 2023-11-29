@@ -1,4 +1,4 @@
-package model;
+package model.log;
 
 import java.util.Calendar;
 import java.util.Date;

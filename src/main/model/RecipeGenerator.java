@@ -1,5 +1,7 @@
 package model;
 
+import model.log.Event;
+import model.log.EventLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -31,6 +33,7 @@ public class RecipeGenerator implements Writable {
         if (!alreadyPresent) {
             Ingredient ingredient = new Ingredient(name.toLowerCase(),0.0);
             availableIngredients.add(ingredient);
+            EventLog.getInstance().logEvent(new Event("Added ingredient to available ingredients"));
         }
     }
 
@@ -42,6 +45,7 @@ public class RecipeGenerator implements Writable {
         for (Ingredient ingredient : availableIngredients) {
             if (ingredient.getName().equalsIgnoreCase(name)) {
                 ingredient.addIngredient(quantity);
+                EventLog.getInstance().logEvent(new Event("Added quantity to ingredient in available ingredients"));
                 return true;
             }
         }
@@ -52,6 +56,7 @@ public class RecipeGenerator implements Writable {
     //EFFECTS: adds recipe to recipeList
     public void addRecipe(Recipe recipe) {
         recipeList.add(recipe);
+        EventLog.getInstance().logEvent(new Event("Added recipe to recipe list"));
     }
 
     //EFFECTS: returns recipes which can be cooked with ingredients available
@@ -62,6 +67,7 @@ public class RecipeGenerator implements Writable {
                 cookableRecipe.add(recipe);
             }
         }
+        EventLog.getInstance().logEvent(new Event("Showing preparable recipes"));
         return cookableRecipe;
     }
 

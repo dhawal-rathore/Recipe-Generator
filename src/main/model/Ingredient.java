@@ -1,5 +1,7 @@
 package model;
 
+import model.log.Event;
+import model.log.EventLog;
 import org.json.JSONObject;
 import persistence.Writable;
 
@@ -11,6 +13,7 @@ public class Ingredient implements Writable {
     public Ingredient(String name, double quantity) {
         this.name = name;
         this.quantity = quantity;
+        EventLog.getInstance().logEvent(new Event("Created ingredient"));
     }
 
     //REQUIRES: Ingredient to have same name
@@ -36,6 +39,7 @@ public class Ingredient implements Writable {
     //EFFECTS: increases quantity by addQuantity
     public void addIngredient(double addQuantity) {
         quantity += addQuantity;
+        EventLog.getInstance().logEvent(new Event("Added quantity to ingredient"));
     }
 
     //EFFECTS: returns True if Ingredients have the same name
